@@ -38,6 +38,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.buildType.name == "release") {
+                outputFileName = "BrokenTvLauncher-v${variant.versionName}.apk"
+            } else {
+                outputFileName = "BrokenTvLauncher-v${variant.versionName}-${variant.buildType.name}.apk"
+            }
+        }
+    }
 }
 
 dependencies {
